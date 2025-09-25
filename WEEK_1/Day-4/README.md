@@ -6,8 +6,8 @@ This section covers Gate Level Simulation (GLS), a simulation method that runs a
 ## Table of Contents
 
 - [Why is GLS Important?](#why-is-gls-important)
-- [GLS Flow using iverilog](#gls-flow-using-iverilog-)
-- [Common Causes of Synthesis-Simulation Mismatch](#common-causes-of-synthesis-simulation-mismatch-)
+- [GLS Flow using iverilog](#gls-flow-using-iverilog)
+- [Common Causes of Synthesis-Simulation Mismatch](#common-causes-of-synthesis-simulation-mismatch)
   - [1. Missing Sensitivity List](#1-missing-sensitivity-list)
   - [2. Blocking vs. Non-blocking Statement Mismatch](#2-blocking-vs-non-blocking-statement-mismatch)
 
@@ -24,20 +24,30 @@ GLS is a critical verification step for several reasons:
 
 Performing Gate Level Simulation involves the following steps:
 
-
+![image_alt](https://github.com/Yusuff2005/SOC/blob/main/WEEK_1/Day-4/Images/139537557-826c48eb-a0c9-412a-8ee2-7e889b9fa562.png?raw=true)
 
 1.  **Synthesize the Design**: First, the RTL code is synthesized into a gate-level netlist using a tool like Yosys.
+
+![image_alt](https://github.com/Yusuff2005/SOC/blob/main/WEEK_1/Day-4/Images/VirtualBox_Ubuntu_25_09_2025_09_08_07.png?raw=true)
+
 2.  **Generate the Netlist**: Export the netlist from the synthesis tool. To create a clean, portable netlist, it's best to exclude tool-specific attributes.
     ```bash
     Example command in Yosys
     write_verilog -noattr design_netlist.v
     ```
+
+
 3.  **Run the Simulation**: Use a simulator like **`iverilog`** to compile the testbench along with the generated netlist and any necessary standard cell library Verilog models.
     ```bash
     Compile the testbench, netlist, and library
     iverilog tb_design.v design_netlist.v sky130_primitives.v
     ```
+
+    ![image_alt](https://github.com/Yusuff2005/SOC/blob/main/WEEK_1/Day-4/Images/VirtualBox_Ubuntu_25_09_2025_09_05_02.png?raw=true)
+
 4.  **Analyze Waveforms**: View the resulting waveforms in a tool like **`gtkwave`** to confirm correct functionality and timing.
+
+![image_alt](https://github.com/Yusuff2005/SOC/blob/main/WEEK_1/Day-4/Images/VirtualBox_Ubuntu_25_09_2025_09_24_04.png?raw=true)
 
 A **Gate-Level Verilog model** (netlist) contains information about the design's functionality and timing in terms of interconnected standard cells.
 
@@ -57,6 +67,10 @@ In an `always` block, if a signal that should trigger a change is missing from t
 
 For example, in a 2x1 MUX, if an input is missing from the sensitivity list, the RTL simulation might not show an output change, but the synthesized netlist (and GLS) will.
 
+![image_alt](https://github.com/Yusuff2005/SOC/blob/main/WEEK_1/Day-4/Images/VirtualBox_Ubuntu_25_09_2025_09_28_54.png?raw=true)
+
+![image_alt](https://github.com/Yusuff2005/SOC/blob/main/WEEK_1/Day-4/Images/VirtualBox_Ubuntu_25_09_2025_09_34_27.png?raw=true)
+
 ### 2. Blocking vs. Non-blocking Statement Mismatch
 
 The distinction between blocking (`=`) and non-blocking (`<=`) assignments is critical inside an `always` block.
@@ -64,5 +78,11 @@ The distinction between blocking (`=`) and non-blocking (`<=`) assignments is cr
 -   **Blocking (`=`)**: Statements are executed sequentially, one after another. This is suitable for describing **combinational logic**. If used incorrectly to model sequential logic, it can lead to a mismatch because the simulator will wait for the first statement to finish before evaluating the next, which is not how parallel hardware works.
 -   **Non-blocking (`<=`)**: Statements are scheduled to happen concurrently at the end of the time step. This is the correct way to model **sequential logic** (like flip-flops) and avoids race conditions.
 
+![image_alt](https://github.com/Yusuff2005/SOC/blob/main/WEEK_1/Day-4/Images/VirtualBox_Ubuntu_25_09_2025_09_45_06.png?raw=true)
+
 Using blocking assignments where non-blocking should be used is a classic cause of synthesis-simulation mismatch, as the synthesis tool will infer different hardware than what the RTL simulation shows.
+
+![image_alt](https://github.com/Yusuff2005/SOC/blob/main/WEEK_1/Day-4/Images/VirtualBox_Ubuntu_25_09_2025_10_10_15.png?raw=true)
+
+
 
