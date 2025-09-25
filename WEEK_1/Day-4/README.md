@@ -24,6 +24,8 @@ GLS is a critical verification step for several reasons:
 
 Performing Gate Level Simulation involves the following steps:
 
+
+
 1.  **Synthesize the Design**: First, the RTL code is synthesized into a gate-level netlist using a tool like Yosys.
 2.  **Generate the Netlist**: Export the netlist from the synthesis tool. To create a clean, portable netlist, it's best to exclude tool-specific attributes.
     ```bash
