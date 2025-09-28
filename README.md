@@ -8,5 +8,5 @@ Welcome to my documentaion! This file tracks my week-wise progress and learnings
 
 | Week | Topics | Status
 | :--- | :--- | :---
-| Week-0 | [WEEK_0](https://github.com/Yusuff2005/SOC/tree/main/WEEK_0) | Completed
-| Week-1 | [WEEK_1](https://github.com/Yusuff2005/SOC/tree/main/WEEK_1) | Completed
+| WEEK_0 | [SOFTWARE INSTALLATION AND INTRODUCTION](https://github.com/Yusuff2005/SOC/tree/main/WEEK_0) | Completed
+| WEEK_1 | [SYNTHESIS AND OPTIMIZATION](https://github.com/Yusuff2005/SOC/tree/main/WEEK_1) | Completed
