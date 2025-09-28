@@ -89,7 +89,7 @@ opt_clean -purge # Cleans up redundant logic
 abc -liberty <path_to_liberty_file>
 show
 ```
-# Sequential Logic Optimization Labs 
+# Sequential Optimization Labs 
 
 
 
