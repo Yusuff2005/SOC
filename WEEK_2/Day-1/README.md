@@ -15,7 +15,6 @@ This document covers the design, modeling, and pre-synthesis simulation of the *
 - [3. TL-Verilog to Verilog Conversion](#3-tl-verilog-to-verilog-conversion)
 - [4. Pre-Synthesis Simulation](#4-pre-synthesis-simulation)
 - [5. Viewing the Waveform in GTKWave](#5-viewing-the-waveform-in-gtkwave)
-  - [Viewing DAC Output in Analog Mode](#viewing-dac-output-in-analog-mode)
 - [6. Key Concepts and Troubleshooting](#6-key-concepts-and-troubleshooting)
   - [Why Pre-Synthesis vs. Post-Synthesis?](#why-pre-synthesis-vs-post-synthesis)
   - [Troubleshooting Tips](#troubleshooting-tips)
@@ -60,7 +59,7 @@ git clone [https://github.com/manili/VSDBabySoC.git](https://github.com/manili/V
 cd ~/VLSI/VSDBabySoC/
 ```
 
-# TL-Verilog to Verilog Conversion 
+# 3. TL-Verilog to Verilog Conversion 
  This process is required for the `RVMYTH` core in the `VSDBabySoC` project, as it is written in TL-Verilog and must be converted before it can be used by standard simulation and synthesis tools.
 
 
@@ -126,7 +125,7 @@ When you are finished, you can deactivate it:
 
 deactivate
 ```
-# Pre-Synthesis Simulation 
+# 4. Pre-Synthesis Simulation 
 
 **Pre-Synthesis Simulation** is a fundamental step in the hardware verification process. Its goal is to verify the **functional correctness** of the high-level RTL code in an ideal, zero-delay environment, *before* the design is synthesized into a gate-level netlist.
 
@@ -164,7 +163,7 @@ The following commands are used to run a pre-synthesis simulation for the `VSDBa
     cd output/pre_synth_sim
     ./pre_synth_sim.out
 
-# Viewing Waveforms in GTKWave 
+# 5. Viewing Waveforms in GTKWave 
 
 After running a simulation, the next step is to analyze the generated waveform to verify the design's behavior. This guide covers how to use **GTKWave** to view the Value Change Dump (`.vcd`) file from the `VSDBabySoC` simulation.
 
@@ -187,7 +186,7 @@ This document covers key verification concepts, such as the difference between p
 
 ---
 
-## Why Pre-Synthesis vs. Post-Synthesis?
+## 6. Why Pre-Synthesis vs. Post-Synthesis?
 
 Understanding the difference between these two simulation stages is critical for effective hardware verification.
 
